@@ -1,27 +1,36 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "./Button/Button";
 import { FaPlus, FaSyncAlt, FaMinus } from "react-icons/fa";
 
-export function ButtonGroup({ startCount, setCount, count }) {
+export function ButtonGroup({ index, startCounts, setCount, counts }) {
   return (
-    <div className="counter-buttons">
+    <div>
       <Button
-        backgroundColor={"red"}
+        backgroundColor="red"
         icon={<FaPlus />}
-        iconColor={"white"}
-        clickHandler={() => setCount(count + 1)}
+        iconColor="white"
+        clickHandler={() => {
+          counts[index]++;
+          setCount([...counts]);
+        }}
       />
       <Button
-        backgroundColor={"yellow"}
+        backgroundColor="yellow"
         icon={<FaSyncAlt />}
-        iconColor={"black"}
-        clickHandler={() => setCount(startCount)}
+        iconColor="black"
+        clickHandler={() => {
+          counts[index] = startCounts[index];
+          setCount(startCounts);
+        }}
       />
       <Button
-        backgroundColor={"blue"}
+        backgroundColor="blue"
         icon={<FaMinus />}
-        iconColor={"white"}
-        clickHandler={() => setCount(count - 1)}
+        iconColor="white"
+        clickHandler={() => {
+          counts[index]--;
+          setCount([...counts]);
+        }}
       />
     </div>
   );
